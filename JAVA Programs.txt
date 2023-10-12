@@ -1,0 +1,105 @@
+1. JAVA
+A. Create an array with the values (1, 2, 3, 4, 5, 6, 7) and shuffle it.
+
+import java.util.Arrays;
+import java.util.Random;
+public class ShuffleArray {
+
+	public static void main(String[] args) {
+		
+		int[] array = { 1, 2, 3, 4, 5, 6, 7 };
+		
+		Random rand = new Random();
+		
+		for (int i = 0; i < array.length; i++) {
+			int randomIndexToSwap = rand.nextInt(array.length);
+			int temp = array[randomIndexToSwap];
+			array[randomIndexToSwap] = array[i];
+			array[i] = temp;
+		}
+		System.out.println(Arrays.toString(array));
+	}
+}
+
+2.B. Enter a Roman Number as input and convert it to an integer. (ex IX = 9)
+import java.util.*;
+public class RomanToNumber {
+	int value(char r)
+	{
+		if (r == 'I')
+			return 1;
+		if (r == 'V')
+			return 5;
+		if (r == 'X')
+			return 10;
+		if (r == 'L')
+			return 50;
+		if (r == 'C')
+			return 100;
+		if (r == 'D')
+			return 500;
+		if (r == 'M')
+			return 1000;
+		return -1;
+	}
+	int romanToDecimal(String str)
+	{
+		int res = 0;
+		for (int i = 0; i < str.length(); i++) {
+			int s1 = value(str.charAt(i));
+			if (i + 1 < str.length()) {
+				int s2 = value(str.charAt(i + 1));
+				if (s1 >= s2) {
+					res = res + s1;
+				}
+				else {
+					res = res + s2 - s1;
+					i++;
+				}
+			}
+			else {
+				res = res + s1;
+			}
+		}
+		return res;
+	}
+	public static void main(String args[])
+	{
+		RomanToNumber ob = new RomanToNumber();
+		String str = "MCMIV";
+		System.out.println("Integer form of Roman Numeral"
+						+ " is "
+						+ ob.romanToDecimal(str));
+	}
+}
+
+3.C. Check if the input is pangram or not. (Pangram is a sentence that contains all the alphabet
+from a-z)
+import java.util.*;
+public class pangram {
+public static void main(String[] args) {
+String str = "Pack my box with five dozen liquor jugs."; 
+boolean[] value = new boolean[26]; 
+int index = 0;
+int flag = 1;
+for (int i = 0; i < str.length(); i++) {
+if ( str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
+index = str.charAt(i) - 'A'; 
+}else if( str.charAt(i) >= 'a' &&  str.charAt(i) <= 'z') {
+index = str.charAt(i) - 'a'; 
+}
+value[index] = true; 
+}
+for (int i = 0; i <= 25; i++) {
+if (value[i] == false)
+flag = 0;
+}
+if (flag == 1)
+System.out.print("The String is a Pangram String.");
+else
+System.out.print("The String is not a Pangram String.");
+}
+}
+
+
+

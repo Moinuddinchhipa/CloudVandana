@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Calculator</title>
+
+    <!-- For styling -->
+    <style>
+body{ background-color: rgb(189 189 189);} 
+ td {
+   padding: 0; 
+   margin: 0;
+    }
+        table {
+            
+            padding: 0;
+            margin-left: auto;
+            margin-right: auto;
+            border-spacing: 0;
+            background-color:black ;
+            border-collapse: collapse;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 20px 35px ;
+            background-color: rgb(15, 16, 15);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            margin: 0;
+
+        }
+
+        input[type="text"] {
+            padding: 25px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            /* border-radius: 5px;
+            border: 2px solid black; */
+        }
+
+        /* Additional style for buttons */
+        .calc-button {
+            width: 100%;
+            padding: 30px 20px !important;
+            /* background-color: rgb(15, 16, 15); */
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            margin: 0;
+        }
+
+        /* Style for AC button */
+        .ac-button {
+            width: 100%;
+            padding: 20px 40px;
+            background-color: #129688 !important;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            
+        }
+
+        /* Style for top-right position */
+        .top-right {
+            background-color: #129688; 
+            text-align: right;
+        }
+
+        /* Style for gray-colored operator buttons */
+        .operator-button {
+            background-color: rgb(117 117 117) !important;
+            margin: 0; /* Set margin to 0 */
+             padding: 0;
+             
+            
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Create table -->
+    <table id="calcu">
+        <tr>
+            <td colspan="3">
+                <input type="text" id="result">
+            </td>
+            <td class="top-right"><input type="button" class="ac-button" value="AC" onclick="clearResult()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" class="calc-button" value="9" onclick="appendToResult('9')"></td>
+            <td><input type="button" class="calc-button" value="8" onclick="appendToResult('8')"></td>
+            <td><input type="button" class="calc-button" value="7" onclick="appendToResult('7')"></td>
+            <td><input type="button" class="calc-button operator-button" value="+" onclick="appendToResult('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" class="calc-button" value="4" onclick="appendToResult('4')"></td>
+            <td><input type="button" class="calc-button" value="5" onclick="appendToResult('5')"></td>
+            <td><input type="button" class="calc-button" value="6" onclick="appendToResult('6')"></td>
+            <td><input type="button" class="calc-button operator-button" value="-" onclick="appendToResult('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" class="calc-button" value="1" onclick="appendToResult('1')"></td>
+            <td><input type="button" class="calc-button" value="2" onclick="appendToResult('2')"></td>
+            <td><input type="button" class="calc-button" value="3" onclick="appendToResult('3')"></td>
+            <td><input type="button" class="calc-button operator-button" value="÷" onclick="appendToResult('÷')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" class="calc-button" value="." onclick="appendToResult('.')"></td>
+            <td><input type="button" class="calc-button" value="0" onclick="appendToResult('0')"></td>
+            <td><input type="button" class="calc-button" value="=" onclick="calculateResult()"></td>
+            <td><input type="button" class="calc-button operator-button" value="x" onclick="appendToResult('*')"></td>
+        </tr>
+    </table>
+
+    <script>
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+
+        function appendToResult(value) {
+            document.getElementById('result').value += value;
+        }
+
+        function calculateResult() {
+            try {
+                const expression = document.getElementById('result').value;
+                const result = eval(expression);
+                document.getElementById('result').value = result;
+            } catch (error) {
+                document.getElementById('result').value = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
